@@ -24,6 +24,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{2EB2
 		SQLQuery_BD_Tekus.sql = SQLQuery_BD_Tekus.sql
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F0E6EB0D-766C-4C89-AE6F-F72B01AEC20B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tekus.Tests", "Tekus.Tests\Tekus.Tests.csproj", "{A588392B-B587-471D-BA0E-A240F99701ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +50,10 @@ Global
 		{278EE4B6-B5C7-4BF4-96BB-35DCBBB34BB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{278EE4B6-B5C7-4BF4-96BB-35DCBBB34BB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{278EE4B6-B5C7-4BF4-96BB-35DCBBB34BB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A588392B-B587-471D-BA0E-A240F99701ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A588392B-B587-471D-BA0E-A240F99701ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A588392B-B587-471D-BA0E-A240F99701ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A588392B-B587-471D-BA0E-A240F99701ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{42287A1A-39C9-4EEE-A76A-2FF31AA8BA6F} = {8B0E883F-F2E3-4531-B893-FF27772C98D6}
 		{2F4383B8-EABE-4E99-8120-37DFBADBD6DC} = {AA29BE5A-E8F9-4A49-9D4D-639570A142CB}
 		{278EE4B6-B5C7-4BF4-96BB-35DCBBB34BB0} = {C6A4D55E-BA92-4AE6-9579-D56F207F860B}
+		{A588392B-B587-471D-BA0E-A240F99701ED} = {F0E6EB0D-766C-4C89-AE6F-F72B01AEC20B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9815F42-8786-4D04-BE2D-951B31E51A6C}

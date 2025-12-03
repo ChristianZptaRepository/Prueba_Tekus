@@ -6,5 +6,6 @@ namespace Tekus.Application.Interfaces
     {
         Task<List<CountryDto>> GetCountriesAsync();
         Task<string?> GetCountryNameByCodeAsync(string code);
+        Task ValidateCountryCodesAsync(List<string> codes);
     }
 }

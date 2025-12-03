@@ -55,7 +55,19 @@ namespace Tekus.Infrastructure.ExternalServices
                 return new List<CountryDto>();
             }
         }
+        public async Task ValidateCountryCodesAsync(List<string> codes)
+        {
+            var validCountries = await GetCountriesAsync();
+            var validCodes = new HashSet<string>(validCountries.Select(c => c.Code));
 
+            foreach (var code in codes)
+            {
+                if (!validCodes.Contains(code))
+                {
+                    throw new ArgumentException($"El código de país '{code}' no es válido.");
+                }
+            }
+        }
         public async Task<string?> GetCountryNameByCodeAsync(string code)
         {
             var countries = await GetCountriesAsync();

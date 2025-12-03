@@ -40,14 +40,7 @@ namespace Tekus.Application.Features.Services
                 throw new KeyNotFoundException($"No se encontró el proveedor con ID {request.ProviderId}");
             }
 
-            foreach (var code in request.CountryCodes)
-            {
-                var countryName = await _countryService.GetCountryNameByCodeAsync(code);
-                if (string.IsNullOrEmpty(countryName))
-                {
-                    throw new ArgumentException($"El código de país '{code}' no es válido.");
-                }
-            }
+            await _countryService.ValidateCountryCodesAsync(request.CountryCodes);
 
             var service = new Service(request.Name, request.HourlyRate, request.ProviderId);
             service.SetCountries(request.CountryCodes);
