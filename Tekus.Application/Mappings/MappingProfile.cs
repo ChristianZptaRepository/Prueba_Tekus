@@ -10,7 +10,11 @@ namespace Tekus.Application.Mappings
         {
             CreateMap<Provider, ProviderDto>();
 
-            CreateMap<Service, ServiceDto>();
+            CreateMap<Service, ServiceDto>()
+            .ForMember(
+                dest => dest.CountryCodes,
+                opt => opt.MapFrom(src => src.Countries)
+            );
         }
     }
 }
