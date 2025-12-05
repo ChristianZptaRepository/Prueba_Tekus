@@ -36,6 +36,7 @@ namespace Tekus.API.Controllers
             var providers = await _getAllServicesHandler.Handle(request);
             return Ok(providers);
         }
+
         [HttpPut("{id}")]
         [ProducesResponseType(204)]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateServiceCommand command)
@@ -44,7 +45,6 @@ namespace Tekus.API.Controllers
             {
                 return BadRequest("El ID de la URL no coincide con el cuerpo de la solicitud.");
             }
-
             try
             {
                 await _mediator.Send(command);

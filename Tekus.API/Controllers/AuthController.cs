@@ -30,7 +30,7 @@ namespace Tekus.API.Controllers
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, request.Username) }),
-                    Expires = DateTime.UtcNow.AddHours(2),
+                    Expires = DateTime.UtcNow.AddHours(1),
                     Issuer = _configuration["JwtSettings:Issuer"],
                     Audience = _configuration["JwtSettings:Audience"],
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

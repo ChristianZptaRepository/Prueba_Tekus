@@ -15,12 +15,10 @@ namespace Tekus.API.Controllers
         private readonly IMediator _mediator;
         private readonly CreateProviderHandler _createHandler;
         private readonly GetAllProvidersHandler _getAllProvidersHandler;
-        private readonly IProviderRepository _repository;
 
-        public ProvidersController(CreateProviderHandler createHandler, IProviderRepository repository, GetAllProvidersHandler getAllProvidersHandler, IMediator mediator)
+        public ProvidersController(CreateProviderHandler createHandler,GetAllProvidersHandler getAllProvidersHandler, IMediator mediator)
         {
             _createHandler = createHandler;
-            _repository = repository;
             _getAllProvidersHandler = getAllProvidersHandler;
             _mediator = mediator;
         }
@@ -38,6 +36,7 @@ namespace Tekus.API.Controllers
             var providers = await _getAllProvidersHandler.Handle(request);
             return Ok(providers);
         }
+
         [HttpPut("{id}")]
         [ProducesResponseType(204)] // No Content
         [ProducesResponseType(404)] // Not Found
@@ -47,7 +46,6 @@ namespace Tekus.API.Controllers
             {
                 return BadRequest("El ID de la URL no coincide con el cuerpo de la solicitud.");
             }
-
             try
             {
                 await _mediator.Send(command);

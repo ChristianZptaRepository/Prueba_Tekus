@@ -12,7 +12,7 @@ namespace Tekus.Domain.Entities
         public Dictionary<string, string> CustomAttributes { get; private set; } = new();
         protected Provider() { }
 
-        public Provider(string nit, string name, string email)
+        public Provider(string nit, string name, string email) : base()
         {
             if (string.IsNullOrWhiteSpace(nit)) throw new ArgumentException("El NIT es obligatorio.");
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("El nombre es obligatorio.");
@@ -21,6 +21,11 @@ namespace Tekus.Domain.Entities
             Nit = nit;
             Name = name;
             Email = email;
+        }
+        public Provider(Guid id, string name, string nit, string email, Dictionary<string, string> customAttributes)
+        : base(id)
+        {
+            UpdateDetails(name, nit, email, customAttributes);
         }
         public void AddService(Service service)
         {
