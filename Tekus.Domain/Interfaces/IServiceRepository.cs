@@ -8,6 +8,8 @@ namespace Tekus.Domain.Interfaces
         Task<int> CountAsync();
         Task<List<List<string>>> GetAllCountriesAsync();
         Task AddAsync(Service service);
+        Task UpdateAsync(Service service);
         Task<PaginatedResponse<Service>> GetAllAsync(int pageNumber, int pageSize);
+        Task<Service?> GetByIdAsync(Guid id);
     }
 }

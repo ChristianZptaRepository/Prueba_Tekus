@@ -45,5 +45,15 @@ namespace Tekus.Infrastructure.Repositories
 
             return PaginatedResponse<Service>.Create(services, pageNumber, pageSize, totalCount);
         }
+        public async Task<Service?> GetByIdAsync(Guid id)
+        {
+            return await _context.Services
+                .FirstOrDefaultAsync(p => p.Id == id);
+        }
+        public async Task UpdateAsync(Service service)
+        {
+            _context.Services.Update(service);
+            await _context.SaveChangesAsync();
+        }
     }
 }

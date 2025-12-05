@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tekus.Application.DTOs;
 using Tekus.Application.Features.Providers;
@@ -11,13 +12,15 @@ namespace Tekus.API.Controllers
     [ApiController]
     public class ServicesController : ControllerBase
     {
+        private IMediator _mediator;
         private readonly CreateServiceHandler _createHandler;
         private readonly GetAllServicesHandler _getAllServicesHandler;
 
-        public ServicesController(CreateServiceHandler createHandler, GetAllServicesHandler getAllServicesHandler)
+        public ServicesController(CreateServiceHandler createHandler, GetAllServicesHandler getAllServicesHandler, IMediator mediator)
         {
             _createHandler = createHandler;
             _getAllServicesHandler = getAllServicesHandler;
+            _mediator = mediator;
         }
 
         [HttpPost]
@@ -32,6 +35,29 @@ namespace Tekus.API.Controllers
         {
             var providers = await _getAllServicesHandler.Handle(request);
             return Ok(providers);
+        }
+        [HttpPut("{id}")]
+        [ProducesResponseType(204)]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateServiceCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest("El ID de la URL no coincide con el cuerpo de la solicitud.");
+            }
+
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

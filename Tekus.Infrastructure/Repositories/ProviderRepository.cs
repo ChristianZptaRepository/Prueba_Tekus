@@ -28,11 +28,6 @@ namespace Tekus.Infrastructure.Repositories
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task UpdateAsync(Provider provider)
-        {
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<bool> ExistsWithNitAsync(string nit)
         {
             return await _context.Providers.AnyAsync(p => p.Nit == nit);
@@ -57,6 +52,11 @@ namespace Tekus.Infrastructure.Repositories
         public async Task<int> CountAsync()
         {
             return await _context.Providers.CountAsync();
+        }
+        public async Task UpdateAsync(Provider provider)
+        {
+            _context.Providers.Update(provider);
+            await _context.SaveChangesAsync();
         }
     }
 }

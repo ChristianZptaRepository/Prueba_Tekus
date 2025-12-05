@@ -39,5 +39,14 @@ namespace Tekus.Domain.Entities
                 CustomAttributes.Add(fieldName, value);
             }
         }
+        public void UpdateDetails(string name, string nit, string email, Dictionary<string, string> customAttributes)
+        {
+            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("El nombre es requerido.");
+
+            Name = name;
+            Nit = nit;
+            Email = email;
+            CustomAttributes = customAttributes ?? new Dictionary<string, string>();
+        }
     }
 }

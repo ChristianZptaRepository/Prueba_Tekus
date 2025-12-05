@@ -12,9 +12,9 @@ namespace Tekus.Domain.Interfaces
     {
         Task<Provider?> GetByIdAsync(Guid id);
         Task AddAsync(Provider provider);
-        Task UpdateAsync(Provider provider);
         Task<bool> ExistsWithNitAsync(string nit);
         Task<int> CountAsync();
+        Task UpdateAsync(Provider provider);
         Task<PaginatedResponse<Provider>> GetAllAsync(int pageNumber, int pageSize);
     }
 }

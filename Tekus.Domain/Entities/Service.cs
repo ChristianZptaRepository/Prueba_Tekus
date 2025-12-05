@@ -27,5 +27,14 @@ namespace Tekus.Domain.Entities
                 throw new ArgumentException("El servicio debe operar en al menos un país.");
             Countries = countries;
         }
+        public void UpdateDetails(string name, decimal hourlyRate, Guid providerId, List<string> countryCodes)
+        {
+            if (hourlyRate <= 0) throw new ArgumentException("La tarifa debe ser mayor a 0.");
+
+            Name = name;
+            HourlyRate = hourlyRate;
+            ProviderId = providerId;
+            Countries = countryCodes ?? new List<string>();
+        }
     }
 }
